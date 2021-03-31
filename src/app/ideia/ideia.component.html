@@ -1,0 +1,213 @@
+<mat-vertical-stepper linear #stepper>
+  <mat-step [stepControl]="step1">
+    <div fxLayout="row wrap" fxLayoutAlign="center start">
+      <div fxFlex.gt-sm="90" fxFlex="100">
+        <form [formGroup]="step1">
+          <ng-template matStepLabel>Básico</ng-template>
+
+          <div fxLayout="column">
+            <mat-form-field class="mb-1">
+              <input matInput placeholder="Como seu projeto se chamará?" maxlength="30" [(ngModel)]="ideia.titulo"
+                [formControl]="step1.controls['titulo'] ">
+              <mat-hint>Dê um nome para seu projeto...</mat-hint>
+              <small *ngIf="step1.controls['titulo'].hasError('whitespace') && step1.controls['titulo'].touched" class="mat-text-warn">Campo
+                Obrigatório...</small>
+            </mat-form-field>
+
+            <mat-form-field class="mb-1">
+              <div formGroupName="categoria_id">
+                <mat-select placeholder="Categoria" [formControl]="step1.get('categoria_id').get('id')">
+                  <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.tipo}}</mat-option>
+
+                </mat-select>
+              </div>
+              <mat-hint>Selecione uma categoria...</mat-hint>
+              <small *ngIf="step1.get('categoria_id').get('id').hasError('required') && step1.get('categoria_id').get('id').touched"
+                class="mat-text-warn">Campo Obrigatório...</small>
+
+            </mat-form-field>
+
+
+            <mat-form-field class="mb-1">
+              <div formGroupName="pais">
+                <mat-select placeholder="Origem" [formControl]="step1.get('pais').get('id')">
+                  <mat-option *ngFor="let pais of paises" [value]="pais.id">{{pais.nome}}</mat-option>
+
+                </mat-select>
+              </div>
+              <mat-hint>Selecione um país de Origem...</mat-hint>
+              <small *ngIf="step1.get('pais').get('id').hasError('required') && step1.get('pais').get('id').touched"
+                class="mat-text-warn">Campo Obrigatório...</small>
+
+            </mat-form-field>
+            <mat-form-field class="mb-1">
+
+              <mat-select placeholder="Estado Atual" [(ngModel)]="ideia.etapas" [formControl]="step1.controls['etapas']">
+                <mat-option value="INICIO">Fase Inicial </mat-option>
+                <mat-option value="DEV">Desenvolvimento</mat-option>
+                <mat-option value="AFINAL">Ajustes Finais </mat-option>
+                <mat-option value="FINAL">Projeto Finalizado </mat-option>
+
+
+              </mat-select>
+
+              <mat-hint>Estado Atual do Projeto...</mat-hint>
+              <small *ngIf="step1.controls['etapas'].hasError('required') && step1.controls['etapas'].touched" class="mat-text-warn">Campo
+                Obrigatório...</small>
+
+            </mat-form-field>
+            <mat-form-field class="mb-1">
+              <input matInput [matDatepicker]="inicio" [(ngModel)]="ideia.data_ini" formControlName="data_ini"
+                placeholder="Inícia em:" [formControl]="step1.controls['data_ini']">
+              <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
+              <mat-datepicker #inicio></mat-datepicker>
+              <mat-hint>Início do projeto...</mat-hint>
+              <small *ngIf="step1.controls['data_ini'].hasError('required') && step1.controls['data_ini'].touched"
+                class="mat-text-warn">Campo Obrigatório...</small>
+
+            </mat-form-field>
+
+            <mat-form-field class="mb-1">
+              <input matInput [matDatepicker]="fim" placeholder="Finaliza em:" [formControl]="step1.controls['data_fim']">
+              <mat-datepicker-toggle matSuffix [for]="fim"></mat-datepicker-toggle>
+              <mat-datepicker #fim></mat-datepicker>
+              <mat-hint>Fim do projeto...</mat-hint>
+              <small *ngIf="step1.controls['data_ini'].hasError('required') && step1.controls['data_ini'].touched"
+                class="mat-text-warn">Campo Obrigatório...</small>
+
+            </mat-form-field>
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Financiamento
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Preencha somente para a arrecadação de fundos.
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <table style="width: 100% !important" cellspacing="0">
+                  <tr>
+                    <td>
+                      <mat-form-field >
+                        <input matInput type="number" type="number" onKeyPress="if(this.value.length==4) return false;" [(ngModel)]="ideia.agencia" [formControl]="step1.controls['agencia']" placeholder="Agência">
+                        <mat-icon matSuffix>money</mat-icon>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field >
+                        <input matInput type="number" onKeyPress="if(this.value.length==6) return false;" [(ngModel)]="ideia.conta" [formControl]="step1.controls['conta']" placeholder="Número da Conta">
+                        <mat-icon matSuffix>money</mat-icon>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field >
+                          <input matInput placeholder="Banco" [(ngModel)]="ideia.banco" [formControl]="step1.controls['banco']">
+                        <mat-icon matSuffix>domain</mat-icon>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                        <mat-form-field >
+                          <input matInput placeholder="Titular" [(ngModel)]="ideia.titular" [formControl]="step1.controls['titular']"> 
+                          <mat-icon matSuffix>person</mat-icon>
+                        </mat-form-field>
+                      </td>
+                  </tr>
+              
+                </table>
+                <table class="example-full-width" style="width: 100% !important" cellspacing="0">
+                    <tr>   
+                         
+                    <td>
+                      <mat-form-field class="example-full-width">
+                        <input matInput type="email" placeholder="Contato" [(ngModel)]="ideia.contato" [formControl]="step1.controls['contato']">
+                        <mat-icon matSuffix>email</mat-icon>
+                        <small *ngIf="step1.controls['contato'].errors?.email && step1.controls['contato'].touched" class="mat-text-warn">Preencha um e-mail válido...</small>
+
+                      </mat-form-field>
+                    </td>
+                    <td>
+                  <mat-form-field class="example-full-width">
+                      <input matInput currencyMask  placeholder="Meta de Arrecadação" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',',  allowNegative: false }" [(ngModel)]="ideia.meta_arrecadacao" [formControl]="step1.controls['meta_arrecadacao']">
+                      <mat-icon matSuffix>attach_money</mat-icon>
+                    </mat-form-field>
+                    </td>
+
+                    <td>
+                      <mat-form-field class="example-full-width">
+                          <input matInput type="text" currencyMask  [formControl]="step1.controls['total_arrecadacao']"  [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',',  allowNegative: false }" [(ngModel)]="ideia.total_arrecadacao" placeholder="Total Arrecadado">
+                          <mat-icon matSuffix>mood</mat-icon>
+                        </mat-form-field>
+                        </td>
+                  </tr>
+                  </table>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Descrição" maxlength="255" [(ngModel)]="ideia.descricao" [formControl]="step1.controls['descricao']"></textarea>
+              <mat-hint>Fale um pouco sobre a sua ideia...</mat-hint>
+              <small *ngIf="step1.controls['descricao'].hasError('whitespace') && step1.controls['descricao'].touched"
+                class="mat-text-warn">Campo Obrigatório...</small>
+
+            </mat-form-field>
+            <br>
+            <div>
+              <button mat-raised-button color="primary" mat-button matStepperNext>Próximo</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </mat-step>
+  <mat-step [stepControl]="step2">
+    <div fxLayout="row wrap" fxLayoutAlign="center start">
+      <div fxFlex.gt-sm="90" fxFlex="100">
+        <form [formGroup]="step2">
+          <div fxLayout="column">
+            <ng-template matStepLabel>Mídia</ng-template>
+            <label style="font-size: 13px; color: #6d6d6b;" for="image">Escolha uma imagem representativa <span style="color: red">*</span></label>
+            <mat-divider></mat-divider>
+            <mat-card>
+              
+              <input type="file" id="image" (change)="onFileChange($event)" multiple="" #fileInput>
+            </mat-card>
+            <mat-divider></mat-divider>
+            <mat-form-field class="example-full-width">
+              <span matPrefix>https://facebook.com/</span>
+              <input type="tel" matInput placeholder="Facebook" [(ngModel)]="ideia.facebook" [formControl]="step2.controls['facebook']">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <span matPrefix>https://instagram.com/</span>
+              <input type="tel" matInput placeholder="Instagram" [(ngModel)]="ideia.instagram" [formControl]="step2.controls['instagram']">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <span matPrefix>https://twitter.com/</span>
+              <input type="tel" matInput placeholder="Twitter" [(ngModel)]="ideia.twitter" [formControl]="step2.controls['twitter']">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+
+            <div>
+              <button mat-button matStepperPrevious>Voltar</button>
+              <button mat-raised-button color="primary" mat-button (click)="salvar()">Publicar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-step>
+  <!--<mat-step>
+    <ng-template matStepLabel>Pronto</ng-template>
+    You are now done.
+    <div>
+    <button mat-button matStepperPrevious>Voltar</button>
+    <button mat-raised-button color="primary" mat-button (click)="stepper.reset()">Publicar</button>
+    </div>
+    </mat-step>-->
+</mat-vertical-stepper>

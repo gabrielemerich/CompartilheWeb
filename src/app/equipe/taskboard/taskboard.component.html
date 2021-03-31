@@ -1,0 +1,44 @@
+<div class="button-row">
+  <button mat-raised-button (click)="openDialogQuadro()" color="primary">
+    <mat-icon>add_circle</mat-icon> Novo Quadro
+  </button>
+
+</div>
+<div class="taskboard page-height">
+  <div class="taskboard-wrapper" *ngFor="let board of taskboard; let i = index">
+    <div class="taskboard-list">
+      <div class="taskboard-header text-uppercase">
+        <strong>{{board.title}}</strong>
+      </div>
+      <div class="add-card">
+        <a (click)="openDialogCard(board.id)" class="link-add">
+          <mat-icon>add_circle</mat-icon> Adicionar Cartão
+        </a>
+        <div class="options-quadro" style="display: inline">
+          <a>
+              <mat-icon style="position: relative; font-size:19px; top:6px">edit_forever</mat-icon>
+          </a>
+          <a (click)="deleteTaskBoard(board.id)">
+            <mat-icon style="position: relative; font-size:19px; color: #a50211; top:6px">delete_forever</mat-icon>
+          </a>
+      </div>
+    </div>
+      <mat-divider style="padding: 3px; margin-top:9px"></mat-divider>
+      <div class="taskboard-cards" [dragulaModel]='board.tasks' [dragula]='"taskboard"'>
+        <div class="taskboard-task" *ngFor="let task of board.tasks" [ngClass]="task.class">
+          <div class="taskboard-task-title">{{task.title}}</div>
+          <small class="card-text text-muted">{{task.description}}</small>
+          <!---<div class="options">
+           <a>
+              <mat-icon style="position: relative; font-size:19px; color: #a50211; top:6px">delete_forever</mat-icon>
+            </a>
+            <a>
+              <mat-icon style="position: relative; font-size:19px; top:6px">edit_forever</mat-icon>
+            </a>
+          </div>-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

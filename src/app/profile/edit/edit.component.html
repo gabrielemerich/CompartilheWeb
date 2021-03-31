@@ -1,0 +1,47 @@
+
+<h1 mat-dialog-title>Editar Perfil</h1>
+<div mat-dialog-content >
+  <div class="example-container">
+      
+     <mat-card style="width: 89%">
+        <input type="file" id="image" [(ngModel)]="data.image" (change)="onFileChange($event)" multiple="" #fileInput>
+   </mat-card>
+   
+    <mat-form-field>
+      <input matInput placeholder="Profissão" [(ngModel)]="data.profissao" [formControl]="form.controls['profissao']">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="number" onKeyPress="if(this.value.length==11) return false;"  matInput placeholder="Telefone" [(ngModel)]="data.telefone" [formControl]="form.controls['telefone']">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Contato" [(ngModel)]="data.contato" [formControl]="form.controls['contato']">
+      <small *ngIf="form.controls['contato'].errors?.email && form.controls['contato'].touched" class="mat-text-warn">Preencha um e-mail válido...</small>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="WebSite" [(ngModel)]="data.website" [formControl]="form.controls['website']">
+    </mat-form-field>
+
+    <mat-form-field [formGroup]="form">
+      <div formGroupName="pais_id">
+        <mat-select placeholder="Origem" [formControl]="form.get('pais_id').get('id')">
+          <mat-option *ngFor="let pais of paises" [value]="pais.id">{{pais.nome}}</mat-option>
+
+        </mat-select>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Sobre Mim" [(ngModel)]="data.sobre" [formControl]="form.controls['sobre']"></textarea>
+    </mat-form-field>
+  
+    
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Cancelar</button>
+  <button mat-raised-button [disabled]="form.controls['contato'].errors?.email" style="color: #fff !important" color="primary" (click)="setImg()" [mat-dialog-close]="data" cdkFocusInitial>Editar</button>
+</div>

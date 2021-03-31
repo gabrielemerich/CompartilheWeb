@@ -1,0 +1,76 @@
+    <div class="pl-1 pr-1 pb-1">
+      <h3>Nova Equipe</h3>
+      <form [formGroup]="equipeForm">
+      <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td><mat-form-field class="example-full-width">
+          <input matInput placeholder="Nome da Equipe"  [formControl]="equipeForm.controls['nome']">
+          <small *ngIf="equipeForm.controls['nome'].hasError('whitespace') && equipeForm.controls['nome'].touched" class="mat-text-warn">Campo Obrigatório...</small>
+
+        </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+          <input matInput placeholder="Descrição" [formControl]="equipeForm.controls['descricao']">
+          <small *ngIf="equipeForm.controls['descricao'].hasError('whitespace') && equipeForm.controls['descricao'].touched" class="mat-text-warn">Campo Obrigatório...</small>
+        </mat-form-field></td>
+      <td>
+        <mat-form-field>
+          <mat-select placeholder="Membros" [(ngModel)]="selected" [formControl]="users_forms" multiple>
+            <mat-option *ngFor="let user of users" [value]="user.id">{{user.nome}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+        
+      </tr>
+      
+      </table>
+        <div class="pb-1">
+            <button mat-raised-button color="primary" [disabled]="equipeForm.controls['nome'].hasError('whitespace') || equipeForm.controls['descricao'].hasError('whitespace')" (click)="newEquipe()">{{title_button}}</button>          
+            <button mat-raised-button style="margin-left: 7px !important; background: #b10303 !important; color: #fff !important" (click)="limpaForm()">Cancelar</button>          
+
+        </div>
+      </form>
+    </div>
+      <div class="pl-1 pr-1 pb-1"><h3>Minhas Equipes</h3></div>
+    <hr>
+
+
+
+  <div fxLayout="row wrap">
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="33.3333%" fxFlex="100" *ngFor="let equipe of equipes">
+      <mat-card class="pa-0">
+        <div class="media-grid">
+          <figure>
+            <!--<div class="product-badge" *ngIf="product.status === 'sale'"><span>Sale</span></div>-->
+            <mat-icon style="margin-left: -115px !important; font-size: 10em !important; color: #575658">people_outline</mat-icon>
+            <figcaption>
+              <p>
+                <a href="javascript:;" [routerLink]="equipe.id" matTooltip="Gerenciar Tarefas" matTooltipPosition="left">
+                  <mat-icon>speaker_notes</mat-icon>
+                </a>
+                <a href="javascript:;" (click)="editarEquipe(equipe.id)" matTooltip="Editar Equipe" matTooltipPosition="left">
+                  <mat-icon>edit</mat-icon>
+                </a>
+                <a href="javascript:;" (click)="deleteEquipe(equipe.id)" matTooltip="Excluir" matTooltipPosition="left">
+                  <mat-icon>delete</mat-icon>
+                </a>
+              
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+        <mat-card-content class="pa-1">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex>
+              <p class="ma-0">{{ equipe.nome }}</p>
+              <p class="ma-0 pa-0 text-md">{{ equipe.descricao}}</p>
+            </div>
+           <!-- <div class="mat-text-primary text-xl">
+              <span class="strikethrough mat-text-muted text-sm" *ngIf="product.discounted === 'discounted'">$ {{ product.discount }}</span>
+              <span> $ {{ product.price }}</span>
+            </div>-->
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+

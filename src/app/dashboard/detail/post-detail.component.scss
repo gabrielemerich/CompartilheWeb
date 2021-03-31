@@ -1,0 +1,16 @@
+@import "../../../assets/styles/scss/components/product-detail";
+textarea{width: 100%;}
+*{
+    overflow-x: hidden !important;
+}
+
+.progress{
+    width: 50% !important;
+}
+
+.mat-progress-bar-fill:after {
+    background-color: #229e03 !important;
+}
+.mat-chip{
+    margin-top: 17px !important;
+}

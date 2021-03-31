@@ -1,0 +1,24 @@
+mat-grid-tile {
+    background: #311a68;
+  }
+
+  .circle{
+    background: #fff;
+    padding: 24px 26px 24px;
+    border-radius: 99px;
+    width: 80px;
+    height: 80px;
+  }
+  .mat-text-primary{
+    color: #311a68 !important;
+  }
+  .circle{
+    mat-icon{
+      font-size: 75px;
+      color: #311a68 !important;
+    }
+  }
+  .mat-mini-fab{
+    background: #311a68 !important;
+    color: #fff !important;
+  }

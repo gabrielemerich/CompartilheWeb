@@ -1,0 +1,30 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+   
+  </div>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="index">
+      <mat-header-cell *matHeaderCellDef> Posição </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index;"><b>{{i+1}}º</b></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef> Projeto </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="data_ini">
+      <mat-header-cell *matHeaderCellDef> Início </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.data_ini | date:"dd/MM/yyyy"}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="data_fim">
+      <mat-header-cell *matHeaderCellDef> Fim </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.data_fim | date:"dd/MM/yyyy"}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="quant">
+      <mat-header-cell *matHeaderCellDef> Likes </mat-header-cell>
+      <mat-cell *matCellDef="let element"> <span style="color: #029e02; font-size:20px; font-weight: 600">{{element.quant}} </span></mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

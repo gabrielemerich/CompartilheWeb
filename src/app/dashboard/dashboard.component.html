@@ -1,0 +1,94 @@
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+      <mat-card class="card-widget projetos">
+        <div mat-card-widget>
+          <div mat-card-float-icon>
+            <mat-icon>insert_chart</mat-icon>
+          </div>
+          <div class="pl-0">
+            <h2 mat-card-widget-title>{{count_posts}}</h2>
+            <p>Projetos</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+      <mat-card class="card-widget user_on">
+        <div mat-card-widget>
+          <div mat-card-float-icon>
+            <mat-icon>insert_chart</mat-icon>
+          </div>
+          <div class="pl-0">
+            <h2 mat-card-widget-title>{{count_users}}</h2>
+            <p>Usuários</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+      <mat-card class="card-widget likes">
+        <div mat-card-widget>
+          <div mat-card-float-icon>
+            <mat-icon>insert_chart</mat-icon>
+          </div>
+          <div class="pl-0">
+            <h2 mat-card-widget-title>{{count_likes}}</h2>
+            <p>Likes</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+      <mat-card class="card-widget on">
+        <div mat-card-widget>
+          <div mat-card-float-icon>
+            <mat-icon>insert_chart</mat-icon>
+          </div>
+          <div class="pl-0">
+            <h2 mat-card-widget-title>{{count_comments}}</h2>
+            <p>Comentários</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  
+  <div fxLayout="row wrap">
+     
+
+    <div fxFlex.gt-md="33.2" fxFlex="100" *ngFor="let post of posts | filter : searchText">
+      <mat-card>
+        <div fxLayout="row" fxLayoutAlign="center center" id="{{post.id}}" class="mr-1">
+          <mat-card-header class="mt-0">
+            
+            <img matCardAvatar [src]="post.foto ? 'data:image/png;base64,'+post.foto : 'assets/images/avatar-none.jpg'">
+            <mat-card-subtitle>{{post?.post_usuario.nome}} &nbsp; <span class="font-weight-bold mat-text-primary"><a href="" [routerLink]="['/profile', post.post_usuario.id]">Visualizar Perfil</a></span></mat-card-subtitle>
+            <mat-card-title>{{post.titulo}}</mat-card-title>
+          </mat-card-header>
+          <span fxFlex></span>
+          
+        </div>
+        <img mat-card-image src="data:image/png;base64,{{ post.img }}" alt="Photo" height="240">
+        <mat-card-content>
+          <!--<button mat-fab mat-fab-card-float class="mr-1 share" color="warn"><mat-icon>share</mat-icon></button>-->
+          <p>{{post.descricao}}</p>
+        </mat-card-content>
+        <hr>
+        <mat-card-actions>
+          <div fxLayout="row">
+            <button (click)="openDialogQuadro(post.id)" mat-icon-button>
+              <mat-icon>share</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon [ngClass]="{'liked': post.like_id}" (click)="toggleClass($event,'liked', post.id)" >favorite</mat-icon>
+            </button>
+            <span fxFlex></span>
+            <button mat-button [routerLink]="['/detail', post.id]" routerLinkActive="active">Saiba Mais..</button>
+            <!--<button mat-button>Download</button>-->
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    
+    </div>

@@ -1,0 +1,20 @@
+<div fxFlex.gt-sm="33.33%" fxFlex="100">
+  <mat-card>
+    <mat-card-title>Linha do Tempo</mat-card-title>
+    <mat-card-subtitle>Compartilhadas hoje</mat-card-subtitle>
+    <hr>
+    <mat-list>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="feed">
+        <mat-list-item>
+          <img mat-list-avatar [src]="item.user_feed.profile.foto ? 'data:image/png;base64,'+item.user_feed.profile.foto : '../assets/images/avatar-none.jpg'" alt="Foto">
+          <h3 matLine style="font-weight: 600 !important"> {{item.user_feed.nome}} 
+             <span style="font-size: 12px; color:#504f4fdd; font-weight: 500">Compartilhou algo...</span>
+             <span style="font-size: 11px; color: #311a68; font-weight: 500"><a href="" [routerLink]="['/detail', item.post_feed.id]" > - Visualizar</a></span> </h3>
+          <p matLine> {{item.descricao}} </p>
+          
+        </mat-list-item>
+      </ng-template>
+    </mat-list>
+  </mat-card>
+</div>
+

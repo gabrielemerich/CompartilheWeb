@@ -1,0 +1,55 @@
+<mat-grid-list cols="1" rowHeight="340px">
+  <mat-grid-tile>
+    <mat-card class="pa-0" style="text-align: center">
+      <div fxLayout="row wrap" fxLayoutAlign=" stretch" class="mb-1">
+     
+        <div fxFlex.gt-md="60" fxFlex.gt-sm="50" fxFlex="100" class="pa-1">
+          <div class="product-detail-header" style="line-height: 35px">
+            <h1 class="ma-0 pa-0" style="font-size: 30px"><strong>A Guerra no Rio!</strong></h1>
+            <h4 class="mat-text-muted ma-0 pa-0">Mais um policial militar morreu no Rio de Janeiro, chegando a 71 o número de mortos só este ano...</h4>
+    
+            <div fxLayout="row wrap">
+              <span fxLayout="row">
+                  <button mat-mini-fab>
+                      <mat-icon aria-label="Example icon-button with a heart icon">link</mat-icon>
+                    </button>
+              </span>
+              <span class="px-1"><b>Fonte: </b> <a target="_blank" href="#" style="text-decoration:underline">https://noticias.uol.com.br/</a></span>
+             
+            </div>
+          </div>
+          <h2 class="mat-text-primary mt-1">
+              <button routerLink="../post/new" mat-raised-button color="primary">Tenho uma ideia! <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+              </button>
+          </h2>
+          
+          <div class="description" style="width: 80%; margin: 0 auto">
+            <p>O número de tiroteios registrados no Rio de Janeiro aumentou 62% nos últimos setes meses sob intervenção federal na Segurança Pública, comparado com o mesmo período do ano passado.</p>
+            <p>Logo nas primeiras horas da manhã, moradores de Copacabana, na zona sul, foram acordados pelo som dos disparos. Na internet, pode-se ver vídeos da operação que a Polícia Militar iniciou por volta das 5h, na Ladeira dos Tabajaras.</p>
+          
+          </div>
+
+      
+        </div>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="3" rowHeight="300px">
+  <mat-grid-tile>
+      <a href="#" class="circle" routerLink="../equipe" matTooltip="Monte sua equipe e comece agora mesmo...">
+        <mat-icon class="mat-24 mat-icon material-icons" role="img" aria-hidden="true">people</mat-icon>
+      </a>
+  </mat-grid-tile>
+  <mat-grid-tile> 
+    <a href="#" class="circle" routerLink="../ranking" matTooltip="Conheça o Ranking de projetos mais apoiados...">
+      <mat-icon class="mat-24 mat-icon material-icons" role="img" aria-hidden="true">equalizer</mat-icon>
+    </a>
+</mat-grid-tile>
+  <mat-grid-tile>
+      <a href="#" routerLink="../feed" class="circle" matTooltip="Dê uma olhada no que está sendo compartilhado...">
+          <mat-icon class="mat-24 mat-icon material-icons" role="img" aria-hidden="true">timeline</mat-icon>
+        </a>
+  </mat-grid-tile>
+</mat-grid-list>

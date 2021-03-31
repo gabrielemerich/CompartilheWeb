@@ -1,0 +1,185 @@
+<mat-card class="pa-0">
+  <div fxLayout="row wrap" fxLayoutAlign=" stretch" class="mb-1">
+    <div fxFlex.gt-md="40" fxFlex.gt-sm="50" fxFlex="100">
+      <div class="card-image-header product-image-header">
+        <img style="width: 100%; height: 100%" src="data:image/png;base64,{{ post?.img }}" alt="Photo" height="240">
+      </div>
+    </div>
+    <div fxFlex.gt-md="60" fxFlex.gt-sm="50" fxFlex="100" class="pa-1">
+      <div class="product-detail-header">
+        <h1 class="ma-0 pa-0"><strong>{{post?.titulo}}</strong></h1>
+        <mat-chip-list class="chip">
+          <mat-chip>{{post?.categoria_id.tipo}}</mat-chip>
+          <span class="text-xs mat-text-muted" style="font-size: 12px !important;">
+            <span style="font-weight: bold !important">Postado por: </span>
+            {{post?.post_usuario.nome}}
+          </span>
+        </mat-chip-list>
+
+
+        <div fxLayout="row wrap" class="my-2">
+          <div class="progress">
+
+            <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+
+          </div>
+
+        </div>
+        <div fxLayout="row wrap">
+          <span fxLayout="row">
+          </span>
+          <span class="px-1"><b>{{progress}}%</b> concluído</span>
+          <span style="font-size: 13px !important" class="text-xs mat-text-muted">Finaliza em: {{post?.data_fim |
+            date:"dd/MM/yyyy"}}</span>
+        </div>
+      </div>
+      <h2 class="mat-text-primary mt-1">
+        <span><button (click)="openDialogBanco()" *ngIf="contribui" matTooltip="Contribuições" mat-raised-button style="color: #fff;  background: #367f05 !important" class="mr-1"><mat-icon>attach_money</mat-icon></button>
+        </span>
+        <span class="text-xs mat-text-muted" style="font-size: 13px !important"><b>Pais de Origem:</b>
+          {{post?.pais.nome}}</span>
+          
+
+      </h2>
+
+      <div class="description">
+        <span class="text-xs mat-text-muted" style="font-size: 15px !important;">Descrição:</span>
+        <p>{{post?.descricao}}</p>
+      </div>
+
+      <div fxLayout="row wrap" class="my-2">
+
+        <div fxLayout="row" fxLayoutAlign="none center">
+          <div class="social">
+            <span class="px-1">
+              <!--facebook-->
+              <a href="https://facebook.com/{{post?.facebook}}" target="_blank">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                  <path fill="#311a68" d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M18,5H15.5A3.5,3.5 0 0,0 12,8.5V11H10V14H12V21H15V14H18V11H15V9A1,1 0 0,1 16,8H18V5Z" />
+                </svg>
+              </a>
+              <!--twitter-->
+              <a href="https://twitter.com/{{post?.twitter}}" target="_blank">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                  <path fill="#311a68" d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M17.71,9.33C18.19,8.93 18.75,8.45 19,7.92C18.59,8.13 18.1,8.26 17.56,8.33C18.06,7.97 18.47,7.5 18.68,6.86C18.16,7.14 17.63,7.38 16.97,7.5C15.42,5.63 11.71,7.15 12.37,9.95C9.76,9.79 8.17,8.61 6.85,7.16C6.1,8.38 6.75,10.23 7.64,10.74C7.18,10.71 6.83,10.57 6.5,10.41C6.54,11.95 7.39,12.69 8.58,13.09C8.22,13.16 7.82,13.18 7.44,13.12C7.81,14.19 8.58,14.86 9.9,15C9,15.76 7.34,16.29 6,16.08C7.15,16.81 8.46,17.39 10.28,17.31C14.69,17.11 17.64,13.95 17.71,9.33Z" />
+                </svg>
+              </a>
+              <!--instagram-->
+              <a href="https://instagram.com/{{post?.instagram}}" target="_blank">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                  <path fill="#311a68" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                </svg>
+              </a>
+            </span>
+          </div>
+          <div class="mx-1">
+
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="none center">
+          <p><b>{{countLikes}}</b> PESSOA(S) CURTIRAM</p>
+          <div class="mx-1">
+
+          </div>
+        </div>
+      </div>
+
+      <button *ngIf="edit_delete" mat-raised-button [routerLink]="['/post', post?.id]" style="color: #fff" class="mr-1">Editar</button>
+      <button *ngIf="edit_delete" mat-raised-button (click)="openDialog()" color="accent" style="color: #fff; background: #b91206 !important;"
+        class="mr-1">Excluir</button>
+    </div>
+  </div>
+
+  <mat-tab-group [selectedIndex]="2">
+    <!--<mat-tab>
+      <ng-template matTabLabel>Description</ng-template>
+      <mat-card-content class="pa-1">
+        <p><strong>Donec sed odio dui.</strong></p>
+        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      </mat-card-content>
+    </mat-tab>
+    <mat-tab>
+      <ng-template matTabLabel>Specifications</ng-template>
+      <mat-card-content class="pa-1">
+        <div fxLayout="column" layout-align="center">
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Processor:&nbsp;</span>
+            <span>2.0GHz dual-core Intel Core i5 processor</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">CPU:&nbsp;</span>
+            <span>Turbo Boost up to 3.1GHz</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">RAM:&nbsp;</span>
+            <span>8GB 1866MHz memory</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Hard Drive:&nbsp;</span>
+            <span>256GB PCIe-based SSD1</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Graphics Chip:&nbsp;</span>
+            <span>Intel Iris Graphics 540</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Ports:&nbsp;</span>
+            <span>Two Thunderbolt 3 ports</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-tab>-->
+    <mat-tab>
+      <ng-template matTabLabel>Comentários</ng-template>
+      <mat-card class="profile-post">
+        <form fxLayout="row">
+
+          <textarea matInput [(ngModel)]="comment.body" [ngModelOptions]="{standalone: true}" placeholder="Deixe um comentário...."
+            rows="6"></textarea>
+
+        </form>
+        <hr>
+        <mat-card-actions>
+          <div fxLayout="row">
+            <!--<button mat-icon-button>
+              <mat-icon>insert_photo</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>insert_link</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>location_on</mat-icon>
+            </button> -->
+            <span fxFlex></span>
+            <button mat-raised-button color="primary" (click)="salvarComment()">Comentar</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+      <mat-list>
+        <ng-template let-item let-last="last" ngFor [ngForOf]="comments">
+          <mat-list-item>
+             <img mat-list-avatar [src]="item.usuario.profile.foto ? 'data:image/png;base64,'+item.usuario.profile.foto : '../assets/images/avatar-none.jpg'" alt="Foto">
+            <h3 matLine> {{item.usuario.nome}} <span style="font-size: 11px"> <b>diz:</b></span></h3>
+            <div matLine>
+              <span fxLayout="row">
+               
+                <!--<span *ngFor="let star of stars" [class.mat-text-default]="star <= item.rating" class="mat-text-muted">&#9733;</span>-->
+              </span>
+
+            </div>
+            <p matLine style="font-size: 13px !important">{{item.body}} </p>
+
+          </mat-list-item>
+          <hr>
+        </ng-template>
+      </mat-list>
+    </mat-tab>
+
+  </mat-tab-group>
+</mat-card>

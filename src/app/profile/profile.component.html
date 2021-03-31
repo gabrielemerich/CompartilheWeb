@@ -1,0 +1,68 @@
+<div *ngIf="isDataLoaded">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span fxFlex></span>
+    <!--<button mat-raised-button color="basic" class="ml-xs mr-xs">Seguir
+    </button>-->
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="wrapper">
+  <div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex="100">
+      <mat-card>
+        <mat-card-content>
+          <div fxLayout="row">
+            <div fxFlex="55">
+              <h1  class="ma-0"><b>{{usuario.nome}}</b></h1>
+              <small><b>Contato: </b>{{profile.contato ? profile.contato : usuario.profile?.contato}}</small>
+              <p class="mt-xs mb-xs"><b>Profissão: </b> {{profile.profissao ? profile.profissao : usuario.profile?.profissao }}</p>
+              <a href="javascript:;" class="block mt-xs mb-xs"><b>País: </b>{{profile.pais?.nome ? profile.pais?.nome : usuario.profile?.pais.nome }}</a>
+              <a href="javascript:;" class="block mt-xs mb-xs"><b>Website: </b>{{profile.website ? profile.website : usuario.profile?.website}}</a>
+              <a href="javascript:;" class="block mt-xs mb-xs"><b>Telefone: </b> {{profile.telefone ? profile.telefone : usuario.profile?.telefone}}</a>
+              <button (click)="openDialogEdit()" *ngIf="edit_flag" mat-raised-button color="primary">Editar Perfil
+                <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+              </button>
+            </div>
+            <div fxFlex="45">
+              <figure>
+                <div class="text-xs-center">
+                  <img [src]="avatar ? avatar : 'assets/images/avatar-none.jpg'" style="width:150px !important; height: 150px !important" alt="teste" class="radius-circle">
+                  <div class="text-md mt10">Foto de Perfil</div>
+                </div>
+                <!--<div class="ma-xs">
+                  <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                </div>
+                <div  class="text-xs-center"><small>234Gb of 879Gb</small></div>-->
+              </figure>
+            </div>
+          </div>
+        </mat-card-content>
+        <hr>
+        <mat-card-content>
+          <div fxLayout="row" class="text-xs-center">
+            <div fxFlex="33">
+              <h1 class="ma-0"><b>{{count_likes}}</b></h1>
+              <small>Likes</small>
+            </div>
+            <div fxFlex="33">
+              <h1 class="ma-0"><b>{{count_equipes}}</b></h1>
+              <small>Equipes</small>
+            </div>
+            <div fxFlex="33">
+              <h1 class="ma-0"><b>{{count_posts}}</b></h1>
+              <small>Projetos</small>
+            </div>
+          </div>
+        </mat-card-content>
+        <hr>
+        <mat-card-content>
+          <h4 class="mt-0">Sobre</h4>
+          <p>{{profile.sobre ? profile.sobre : usuario.profile?.sobre}}</p>
+        </mat-card-content>
+      </mat-card>
+      <router-outlet></router-outlet>
+    </div>
+    </div>
+    </div>
+  </div>
